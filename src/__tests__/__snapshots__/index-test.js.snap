@@ -1,20 +1,22 @@
-exports[`test works 1`] = `
-"var _componentFileName = \"\";
-import React from \'react\';
-import { Link } from \'react-router-dom\';
-import Price from \'../../subcomponents/price/PriceContainer\';
-import AddToCartButton from \'../../cart/add-to-cart-button/AddToCartButtonContainer\';
-import AddToWishlistButton from \'../../wishlist/add-to-wishlist-button/AddToWishlistButtonContainer\';
-import Rating from \'../../subcomponents/rating/Rating\';
-import Icon from \'../../../entities/image-pair/Icon\';
-import Product from \'../../../entities/product/Product\';
-import CartError from \'../cart-error/CartErrorContainer\';
-import LazyLoadHandler from \'../../subcomponents/lazy-load-handler/LazyLoadHandler\';
-import Image from \'../../subcomponents/image/Image\';
-import ProductContext from \'../../../contexts/product/ProductContext\';
-import noImage from \'../../../images/no-image.png\';
-import modifyClassName from \'../../../utils/string/modifyClassName\';
-import \'./ProductGridItem.css\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+"var _componentFileName = \\"\\";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Price from '../../subcomponents/price/PriceContainer';
+import AddToCartButton from '../../cart/add-to-cart-button/AddToCartButtonContainer';
+import AddToWishlistButton from '../../wishlist/add-to-wishlist-button/AddToWishlistButtonContainer';
+import Rating from '../../subcomponents/rating/Rating';
+import Icon from '../../../entities/image-pair/Icon';
+import Product from '../../../entities/product/Product';
+import CartError from '../cart-error/CartErrorContainer';
+import LazyLoadHandler from '../../subcomponents/lazy-load-handler/LazyLoadHandler';
+import Image from '../../subcomponents/image/Image';
+import ProductContext from '../../../contexts/product/ProductContext';
+import noImage from '../../../images/no-image.png';
+import modifyClassName from '../../../utils/string/modifyClassName';
+import './ProductGridItem.css';
 
 function ProductGridItem(props) {
   const {
@@ -26,14 +28,14 @@ function ProductGridItem(props) {
       parentProps: props,
       name: _componentFileName
     }
-  }, /*#__PURE__*/React.createElement(\"div\", {
-    className: \"b-product-grid-item\",
+  }, /*#__PURE__*/React.createElement(\\"div\\", {
+    className: \\"b-product-grid-item\\",
     __source: {
       parentProps: props,
       name: _componentFileName
     }
-  }, renderProductIcon(product), /*#__PURE__*/React.createElement(\"div\", {
-    className: \"b-product-grid-item__body\",
+  }, renderProductIcon(product), /*#__PURE__*/React.createElement(\\"div\\", {
+    className: \\"b-product-grid-item__body\\",
     __source: {
       parentProps: props,
       name: _componentFileName
@@ -45,51 +47,51 @@ function ProductGridItem(props) {
       name: _componentFileName
     }
   }), /*#__PURE__*/React.createElement(Rating, {
-    name: \'product-rating\' + product.id,
+    name: 'product-rating' + product.id,
     rating: product.averageRating,
     __source: {
       parentProps: props,
       name: _componentFileName
     }
-  }), /*#__PURE__*/React.createElement(\"div\", {
-    className: \"b-product-grid-item__price-wrapper\",
+  }), /*#__PURE__*/React.createElement(\\"div\\", {
+    className: \\"b-product-grid-item__price-wrapper\\",
     __source: {
       parentProps: props,
       name: _componentFileName
     }
   }, /*#__PURE__*/React.createElement(Price, {
     price: product.price,
-    className: \"b-product-grid-item__price\",
+    className: \\"b-product-grid-item__price\\",
     __source: {
       parentProps: props,
       name: _componentFileName
     }
   }), product.listPrice && product.listPrice > product.price ? /*#__PURE__*/React.createElement(Price, {
     price: product.listPrice,
-    className: \"b-product-grid-item__price b-product-grid-item__price--discount\",
+    className: \\"b-product-grid-item__price b-product-grid-item__price--discount\\",
     discount: true,
     __source: {
       parentProps: props,
       name: _componentFileName
     }
-  }) : null), /*#__PURE__*/React.createElement(\"h4\", {
-    className: \"b-product-grid-item__title\",
+  }) : null), /*#__PURE__*/React.createElement(\\"h4\\", {
+    className: \\"b-product-grid-item__title\\",
     __source: {
       parentProps: props,
       name: _componentFileName
     }
   }, /*#__PURE__*/React.createElement(Link, {
     to: product.url,
-    className: \"b-product-grid-item__link\",
+    className: \\"b-product-grid-item__link\\",
     __source: {
       parentProps: props,
       name: _componentFileName
     }
   }, product.name)), /*#__PURE__*/React.createElement(AddToCartButton, {
     product: product,
-    wrapperClassName: \"b-product-grid-item__add-to-cart-wrapper\",
-    className: \"b-product-grid-item__add-to-cart\",
-    render: () => /*#__PURE__*/React.createElement(\"button\", {
+    wrapperClassName: \\"b-product-grid-item__add-to-cart-wrapper\\",
+    className: \\"b-product-grid-item__add-to-cart\\",
+    render: () => /*#__PURE__*/React.createElement(\\"button\\", {
       __source: {
         parentProps: null,
         name: _componentFileName

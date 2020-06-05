@@ -17,6 +17,6 @@
     "@babel/helper-plugin-utils": "^7.10.1",
     "@babel/plugin-transform-react-jsx": "^7.10.1",
     "@babel/traverse": "^7.10.1",
-    "jest": "^17.0.3"
+    "jest": "^26.0.1"
   }
 }
