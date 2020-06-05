@@ -1,0 +1,22 @@
+{
+  "name": "babel-plugin-jsx-owner",
+  "version": "0.9.0",
+  "description": "adds parent component information to every child",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "url": "git@github.com:lffate/babel-plugin-jsx-owner.git",
+    "type": "git"
+  },
+  "author": "Mikhail Shemenyov <lffate@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/helper-plugin-utils": "^7.10.1",
+    "@babel/plugin-transform-react-jsx": "^7.10.1",
+    "@babel/traverse": "^7.10.1",
+    "jest": "^17.0.3"
+  }
+}
