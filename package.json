@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-jsx-owner",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "adds parent component information to every child",
   "main": "src/index.js",
   "scripts": {
