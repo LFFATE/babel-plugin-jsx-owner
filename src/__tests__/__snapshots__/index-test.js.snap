@@ -93,7 +93,7 @@ function ProductGridItem(props) {
     className: \\"b-product-grid-item__add-to-cart\\",
     render: () => /*#__PURE__*/React.createElement(\\"button\\", {
       __source: {
-        parentProps: null,
+        parentProps: props,
         name: _componentFileName
       }
     }),

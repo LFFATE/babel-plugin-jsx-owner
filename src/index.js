@@ -53,7 +53,7 @@ var _default = (0, _helperPluginUtils.declare)(api => {
 
       const propsLiteral = _core.types.identifier("props");
       const parentPropsProperty = _core.types.objectProperty(_core.types.identifier("parentProps"),
-        path.scope.bindings.props ? propsLiteral : _core.types.nullLiteral()
+        path.scope.hasBinding('props') ? propsLiteral : _core.types.nullLiteral()
       );
 
       attributes.push(_core.types.jsxAttribute(id,
