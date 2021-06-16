@@ -15,6 +15,24 @@ It allows you to handle children's parent component with name* and props
 Feel free to fork and change this settings.
 
 There is probability of some issues due to `__source` is reserved react property.
+But you can override it by plugin option (Make sure to prevent it to be passed to a real DOM): 
+```
+// .babelrc
+{
+  "presets": [
+      ...
+  ],
+  "plugins": [
+    [
+      "babel-plugin-jsx-owner",
+      {
+        "traceId": "__source"
+      }
+    ]
+  ]
+}
+
+```
 
 ```sh
 npm install -D babel-plugin-jsx-owner
