@@ -9,7 +9,7 @@ var _helperPluginUtils = require("@babel/helper-plugin-utils");
 
 var _core = require("@babel/core");
 
-const TRACE_ID = "__source";
+const DEFAULT_TRACE_ID = "__source";
 const FILE_NAME_VAR = "_componentFileName";
 
 var _default = (0, _helperPluginUtils.declare)(api => {
@@ -18,13 +18,14 @@ var _default = (0, _helperPluginUtils.declare)(api => {
   const visitor = {
     JSXOpeningElement(path, state) {
 
-      const id = _core.types.jsxIdentifier(TRACE_ID);
+      const traceID = state.opts.traceId || DEFAULT_TRACE_ID
+      const id = _core.types.jsxIdentifier(traceID);
       const attributes = path.container.openingElement.attributes;
 
       for (let i = 0; i < attributes.length; i++) {
         const name = attributes[i].name;
 
-        if ((name == null ? void 0 : name.name) === TRACE_ID) {
+        if ((name == null ? void 0 : name.name) === traceID) {
           return;
         }
       }
