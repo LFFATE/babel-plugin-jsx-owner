@@ -10,6 +10,8 @@ var _helperPluginUtils = require("@babel/helper-plugin-utils");
 var _core = require("@babel/core");
 
 const DEFAULT_TRACE_ID = "__source";
+const DEFAULT_PATHS = ["src/components"];
+const DEFAULT_PREFIX = "";
 const FILE_NAME_VAR = "_componentFileName";
 
 var _default = (0, _helperPluginUtils.declare)(api => {
@@ -19,6 +21,8 @@ var _default = (0, _helperPluginUtils.declare)(api => {
     JSXOpeningElement(path, state) {
 
       const traceID = state.opts.traceId || DEFAULT_TRACE_ID
+      const paths   = state.opts.paths || DEFAULT_PATHS
+      const prefix  = state.opts.prefix || DEFAULT_PREFIX
       const id = _core.types.jsxIdentifier(traceID);
       const attributes = path.container.openingElement.attributes;
 
@@ -31,7 +35,7 @@ var _default = (0, _helperPluginUtils.declare)(api => {
       }
 
       if (!state.componentFileName) {
-        const componentFileName = state.filename ? getComponentPath(state.filename): "";
+        const componentFileName = state.filename ? getComponentPath(state.filename, paths, prefix): "";
         const componentFileNameIdentifier = path.scope.generateUidIdentifier(
           FILE_NAME_VAR,
         );
@@ -74,11 +78,17 @@ const replaceSlashes = (path) => {
   return path.replace(/\\/g, '/')
 }
 
-const getComponentPath = (path) => {
+const getComponentPath = (path, paths, prefix) => {
   const normalizedPath = replaceSlashes(path);
-  const matches = normalizedPath.match(/src\/components\/(.*)\.tsx/ui);
+  const regexp = new RegExp(`(${paths.map(escapeRegExp).map(path => `(${path})`).join('|')})\\/(?<name>.*)\\.tsx`, 'ui')
+  const matches = normalizedPath.match(regexp);
 
-  return matches ? matches[1] : "";
+  return matches ? `${prefix && `${prefix}.`}${matches.groups.name}` : "";
 }
 
 exports.default = _default;
+
+
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
