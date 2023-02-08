@@ -29,6 +29,8 @@ But you can override it by plugin option (Make sure to prevent it to be passed t
         "traceId": "__source",
         /* paths where your components placed */
         "paths": ["src/components"],
+        /* paths to ignore */
+        "ignorePaths": ["renderSubscriber"],
         /* add prefix to all component names */
         "prefix": "sd-common-products",
       }

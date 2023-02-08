@@ -1,7 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`works 1`] = `
-"var _componentFileName = \\"\\";
+exports[`should not set __owner-data for ignored component 1`] = `
+"import React from 'react';
+import { Link } from 'react-router-dom';
+import Price from '../../subcomponents/price/PriceContainer';
+import AddToCartButton from '../../cart/add-to-cart-button/AddToCartButtonContainer';
+import AddToWishlistButton from '../../wishlist/add-to-wishlist-button/AddToWishlistButtonContainer';
+import Rating from '../../subcomponents/rating/Rating';
+import Icon from '../../../entities/image-pair/Icon';
+import Product from '../../../entities/product/Product';
+import CartError from '../cart-error/CartErrorContainer';
+import LazyLoadHandler from '../../subcomponents/lazy-load-handler/LazyLoadHandler';
+import Image from '../../subcomponents/image/Image';
+import ProductContext from '../../../contexts/product/ProductContext';
+import noImage from '../../../images/no-image.png';
+import modifyClassName from '../../../utils/string/modifyClassName';
+import './ProductGridItem.css';
+
+function ProductGridItem(props) {
+  const {
+    product
+  } = props;
+  return /*#__PURE__*/React.createElement(ProductContext.Provider, {
+    value: product || null
+  }, /*#__PURE__*/React.createElement(\\"div\\", {
+    className: \\"b-product-grid-item\\"
+  }, renderProductIcon(product), /*#__PURE__*/React.createElement(\\"div\\", {
+    className: \\"b-product-grid-item__body\\"
+  }, /*#__PURE__*/React.createElement(CartError, {
+    product: product
+  }), /*#__PURE__*/React.createElement(Rating, {
+    name: 'product-rating' + product.id,
+    rating: product.averageRating
+  }), /*#__PURE__*/React.createElement(\\"div\\", {
+    className: \\"b-product-grid-item__price-wrapper\\"
+  }, /*#__PURE__*/React.createElement(Price, {
+    price: product.price,
+    className: \\"b-product-grid-item__price\\"
+  }), product.listPrice && product.listPrice > product.price ? /*#__PURE__*/React.createElement(Price, {
+    price: product.listPrice,
+    className: \\"b-product-grid-item__price b-product-grid-item__price--discount\\",
+    discount: true
+  }) : null), /*#__PURE__*/React.createElement(\\"h4\\", {
+    className: \\"b-product-grid-item__title\\"
+  }, /*#__PURE__*/React.createElement(Link, {
+    to: product.url,
+    className: \\"b-product-grid-item__link\\"
+  }, product.name)), /*#__PURE__*/React.createElement(AddToCartButton, {
+    product: product,
+    wrapperClassName: \\"b-product-grid-item__add-to-cart-wrapper\\",
+    className: \\"b-product-grid-item__add-to-cart\\",
+    render: () => /*#__PURE__*/React.createElement(\\"button\\", null)
+  }))));
+}
+
+export default ProductGridItem;"
+`;
+
+exports[`should set __owner-data for related component 1`] = `
+"var _componentFileName = \\"ProductGridItem\\";
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Price from '../../subcomponents/price/PriceContainer';

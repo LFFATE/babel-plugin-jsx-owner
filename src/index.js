@@ -6,11 +6,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _helperPluginUtils = require("@babel/helper-plugin-utils");
-
+var getComponentPath = require('./getComponentPath').default;
 var _core = require("@babel/core");
 
 const DEFAULT_TRACE_ID = "__source";
 const DEFAULT_PATHS = ["src/components"];
+const IGNORE_PATHS = [];
 const DEFAULT_PREFIX = "";
 const FILE_NAME_VAR = "_componentFileName";
 
@@ -19,10 +20,10 @@ var _default = (0, _helperPluginUtils.declare)(api => {
 
   const visitor = {
     JSXOpeningElement(path, state) {
-
       const traceID = state.opts.traceId || DEFAULT_TRACE_ID
-      const paths   = state.opts.paths || DEFAULT_PATHS
-      const prefix  = state.opts.prefix || DEFAULT_PREFIX
+      const paths = state.opts.paths || DEFAULT_PATHS
+      const ignorePaths = state.opts.ignorePaths || IGNORE_PATHS
+      const prefix = state.opts.prefix || DEFAULT_PREFIX
       const id = _core.types.jsxIdentifier(traceID);
       const attributes = path.container.openingElement.attributes;
 
@@ -35,18 +36,22 @@ var _default = (0, _helperPluginUtils.declare)(api => {
       }
 
       if (!state.componentFileName) {
-        const componentFileName = state.filename ? getComponentPath(state.filename, paths, prefix): "";
+        const componentFileName = state.filename ? getComponentPath(state.filename, paths, prefix, ignorePaths) : "";
         const componentFileNameIdentifier = path.scope.generateUidIdentifier(
           FILE_NAME_VAR,
         );
 
         const scope = path.hub.getScope();
-        if (scope) {
-          scope.push({
-            id: componentFileNameIdentifier,
-            init: _core.types.stringLiteral(componentFileName),
-          });
+
+        if (!scope || !componentFileName) {
+          return
         }
+
+        scope.push({
+          id: componentFileNameIdentifier,
+          init: _core.types.stringLiteral(componentFileName),
+        });
+
 
         state.componentFileName = componentFileNameIdentifier;
       }
@@ -62,7 +67,7 @@ var _default = (0, _helperPluginUtils.declare)(api => {
       );
 
       attributes.push(_core.types.jsxAttribute(id,
-        _core.types.jsxExpressionContainer(_core.types.objectExpression([ parentPropsProperty, componentFileNameProperty ]))
+        _core.types.jsxExpressionContainer(_core.types.objectExpression([parentPropsProperty, componentFileNameProperty]))
       ));
     }
 
@@ -73,22 +78,4 @@ var _default = (0, _helperPluginUtils.declare)(api => {
   };
 });
 
-const replaceSlashes = (path) => {
-
-  return path.replace(/\\/g, '/')
-}
-
-const getComponentPath = (path, paths, prefix) => {
-  const normalizedPath = replaceSlashes(path);
-  const regexp = new RegExp(`(${paths.map(escapeRegExp).map(path => `(${path})`).join('|')})\\/(?<name>.*)\\.tsx`, 'ui')
-  const matches = normalizedPath.match(regexp);
-
-  return matches ? `${prefix && `${prefix}.`}${matches.groups.name}` : "";
-}
-
 exports.default = _default;
-
-
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-}

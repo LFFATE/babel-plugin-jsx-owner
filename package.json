@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-jsx-owner",
-  "version": "0.10.1",
+  "version": "0.12.1",
   "description": "adds parent component information to every child",
   "main": "src/index.js",
   "scripts": {
@@ -18,5 +18,10 @@
     "@babel/plugin-transform-react-jsx": "^7.10.1",
     "@babel/traverse": "^7.10.1",
     "jest": "^26.0.1"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*-test.[jt]s?(x)"
+    ]
   }
 }
